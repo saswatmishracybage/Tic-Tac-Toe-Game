@@ -220,6 +220,6 @@ ticTacToeApp.directive( 'gameResult', function() {
     var btn = '<input type="button" class="btn" ng-click="newGame()" value="New Game" />';
     return {
         restrict : 'EA',
-        template : '<strong  class="alert alert-success">{{winner}} !!</strong>'+btn
+        template : '<strong  class="alert alert-success">{{winner}} !!</strong> '+btn
     }
 })

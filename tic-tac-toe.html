@@ -15,21 +15,22 @@
             <div>
                 Board Size :
                 <label>
-                    <select ng-model='boardSize' ng-change="changeBoardSize()">
+                    <select ng-model='boardSize' ng-change="changeBoardSize()" >
                         <option ng-repeat="boardSizeOption in boardSizeOptions"
-                            ng-selected="{{boardSizeOption == 3}}"
                             value="{{boardSizeOption}}">
                             {{boardSizeOption}} X {{boardSizeOption}}
                         </option>
                     </select>
                 </label>
             </div>
+            <br>
             <div>
-                <h2>{{currentPlayer}}'s Turn</h2>
+                <h2 ng-hide="winner">{{currentPlayer}}'s Turn</h2>
                 <game-result ng-show="winner"></game-result>
+                <br><br>
                 <table class="table table-bordered">
                     <tr ng-repeat="row in boardIndex">
-                        <td ng-repeat="column in boardIndex" ng-click="cellClick(row,column)" class="cell">{{cellText(row,column)}}</td>
+                        <td ng-repeat="column in boardIndex" ng-click="cellClick(row,column)" class="cell" >{{cellText(row,column)}}</td>
                     </tr>
                 </table>
             </div>
