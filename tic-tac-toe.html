@@ -1,48 +1,33 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>Tic-Tac-Toe Game</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-        <style>
-            .cell {
-                width: 100px;
-                height: 100px;
-                font: 90px sans-serif;
-                text-align: center;
-                vertical-align: center;
-            }
-            table {
-                width: auto;
-                height: auto;
-            }
-        </style>
+        <link href="TicTacToe.css" rel="stylesheet" type="text/css"/>
     </head>
     <body class="container">
         <div ng-app="ticTacToeApp" ng-controller="TicTacToeController">
-            <div ng-show="result" class="alert alert-danger"><h1>This game is already over.</h1></div>
-            <p>
+            <div ng-show="result" class="alert alert-info">
+                <h1>This game is already over.</h1>
+            </div>
+            <div>
                 Board Size :
                 <label>
                     <select ng-model='boardSize' ng-change="changeBoardSize()">
-                        <option value="3">3X3</option>
-                        <option value="4">4X4</option>
-                        <option value="5">5X5</option>
-                        <option value="6">6X6</option>
-                        <option value="7">7X7</option>
-                        <option value="8">8X8</option>
-                        <option value="9">9X9</option>
-                        <option value="10">10X10</option>
+                        <option ng-repeat="boardSizeOption in boardSizeOptions"
+                            ng-selected="{{boardSizeOption == 3}}"
+                            value="{{boardSizeOption}}">
+                            {{boardSizeOption}} X {{boardSizeOption}}
+                        </option>
                     </select>
                 </label>
-            </p>
+            </div>
             <div>
                 <h2>{{currentPlayer}}'s Turn</h2>
-                <winner-directive ng-show="winner">
-                    
-                </winner-directive>
-                <table border="1">
+                <game-result ng-show="winner"></game-result>
+                <table class="table table-bordered">
                     <tr ng-repeat="row in boardIndex">
                         <td ng-repeat="column in boardIndex" ng-click="cellClick(row,column)" class="cell">{{cellText(row,column)}}</td>
                     </tr>
